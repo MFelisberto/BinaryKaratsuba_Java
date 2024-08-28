@@ -11,13 +11,8 @@ public class KaratsubaBinario {
             return;
         }
 
-        // os dois "numeros" binarios que serao multiplicados
-        String bin1 = args[0];
-        String bin2 = args[1];
-
-
-        // chamando o metodo de Karatsuba
-        String resultado = Karatsuba(bin1, bin2);
+        // chamando o metodo de Karatsuba usando os argumentos
+        String resultado = Karatsuba(args[0], args[1]);
         System.out.println("Resultado: " + resultado);
     }
 
@@ -40,13 +35,12 @@ public class KaratsubaBinario {
             return String.valueOf((bin1.charAt(0) - '0') * (bin2.charAt(0) - '0'));
         }
 
-        // 2 numeros = 4 partes
+        // meio da nossa string
         int meio = bin1.length() / 2; 
-        //bin1
-        String A = bin1.substring(0, meio);
+        
+        String A = bin1.substring(0, meio); //bin1
         String B = bin1.substring(meio);
-        //bin2
-        String C = bin2.substring(0, meio);
+        String C = bin2.substring(0, meio); //bin2
         String D = bin2.substring(meio);
 
 
