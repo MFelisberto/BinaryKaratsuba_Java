@@ -30,7 +30,7 @@ public class KaratsubaBinario {
 
         // meio da nossa string
         int meio = bin1.length() / 2; 
-        
+       
         // divisao das strings no meio (A, B, C, D)
         String A = bin1.substring(0, meio); //bin1
         String B = bin1.substring(meio);
@@ -45,7 +45,7 @@ public class KaratsubaBinario {
         String ABmaisCD = Karatsuba(SomaBinaria(A, B), SomaBinaria(C, D));
         String ADmaisBC = SubtracaoBinaria(SubtracaoBinaria(ABmaisCD, AC), BD);
 
-        return SomaBinaria(SomaBinaria(ShiftLeft(AC, 2 * (bin1.length() - meio)), ShiftLeft(ADmaisBC, bin1.length() - meio)), BD);
+        return RemoverZerosEsquerda(SomaBinaria(SomaBinaria(ShiftLeft(AC, 2 * (bin1.length() - meio)), ShiftLeft(ADmaisBC, bin1.length() - meio)), BD));
     }
 
     // adicionar zeros a esquerda
@@ -65,6 +65,18 @@ public class KaratsubaBinario {
         }
         return bin;
     }
+
+    // Em alguns casos de numeros impares, na minha logica acabou ficando com zero a esquerda a mais
+    // tipo -> 0001010
+    // eles nao significam nada... mas pra fica bonito eu tirei :)
+    public static String RemoverZerosEsquerda(String bin) {
+        int i = 0;
+        while(i < bin.length() && bin.charAt(i) == '0') {
+            i++;
+        }
+        return bin.substring(i);
+    }   
+    
 
     // somar binarios como se fossem strings (nao int ;-;)
     public static String SomaBinaria(String bin1, String bin2) {
