@@ -120,7 +120,50 @@ public class KaratsubaBinario {
     // subtracao de binarios como se fossem strings
     public static String SubtracaoBinaria(String bin1, String bin2){
 
-        return "";
-    }
+        StringBuilder resultado = new StringBuilder(); // pro resultado
+        char carry = '0';                              // carry da subtracao (inicialmente zero)
 
+        // de tras para frente (pq binario o "primeiro" é o mais significativo)
+        for(int i = bin1.length() - 1; i >= 0; i--) {
+
+            char bit1 = bin1.charAt(i); // bit do bin1 
+            char bit2 = bin2.charAt(i); // bit do bin2
+
+            if(bit1 == '0' && bit2 == '0'){        // 0 - 0 (sem carry) fica zero
+                if(carry == '1'){
+                    resultado.insert(0, '1');
+                    carry = '1';
+                }else{
+                    resultado.insert(0, '0');
+                    carry = '0';
+                }
+            }else if (bit1 == '1' && bit2 == '0'){ // 1 - 0 (sem carry) fica 1
+                if(carry == '1'){
+                    resultado.insert(0, '0');
+                    carry = '1';
+                }else{
+                    resultado.insert(0, '1');
+                }
+            }else if (bit1 == '1' && bit2 == '1'){
+                if(carry == '1'){
+                    resultado.insert(0, '1');
+                    carry = '1';
+                }else{
+                    resultado.insert(0, '0');
+                    carry = '0';
+                }
+            }else if (bit1 == '0' && bit2 == '1'){ 
+                if(carry == '1'){
+                    resultado.insert(0, '0');
+                    carry = '1';
+                }else{
+                    resultado.insert(0, '1');
+                    carry = '1';
+                }
+            }
+          
+        }
+
+       return resultado.toString();
+    }
 }
